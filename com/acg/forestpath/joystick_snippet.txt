@@ -1,0 +1,30 @@
+function setVIcontrol() {
+	// authenticate
+	var vi_initCtl=ssCore.viJoystickLib.initCtl({authCode:"26fbaea1-954f-4263-b31a-4b272a70befa"});
+
+	if (vi_initCtl.success) {
+		var myTimer:Timer = new Timer(100);
+		myTimer.addEventListener(TimerEvent.TIMER, runMany);
+		myTimer.start();
+	} else {
+		ssDebug.trace("Failure: "+vi_initCtl.Error.description);
+	}
+	ssDebug.trace("Done initializing");
+}
+setVIcontrol();
+
+function runMany(event:TimerEvent):void {
+	var strData = ssCore.viJoystickLib.getData();
+	txtBox_2.text = strData.result;
+}
+
+<JoystickManager xmlns="http://schemas.datacontract.org/2004/07/viJoystickLib" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+  <Joysticks>
+    <Joystick>
+      <Serial>260708</Serial>
+      <Thumb>false</Thumb>
+      <X>0.034387894</X>
+      <Y>-0.09204368</Y>
+    </Joystick>
+  </Joysticks>
+</JoystickManager>
